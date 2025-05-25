@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block body%}
+
+<div class="container">
+    <form id="auth-form" action="{{ url_for('login') }}" method="post">
+        <input type="text" name="username" placeholder="Enter your username" class="input-feild">
+        <input type="password" name="password" placeholder="Enter your password" class="input-feild">
+        <input type="submit" value="login" class="btn-feild" onclick="setAction('login')">
+        <input type="button" value="register" class="btn-feild" onclick="setAction('register')">
+    </form>
+</div>
+
+<script>
+    function setAction(action) {
+
+        // Get the form element by its ID
+        let form = document.getElementById("auth-form");
+
+        // Set the action attribute based on the button clicked
+        if (action === "login") {
+            form.action = "{{ url_for('login') }}";
+        } else if (action === "register") {
+            form.action = "{{ url_for('register') }}";
+        }
+
+        // Set the method to POST for both actions
+        form.method = "post";
+        form.submit();
+    }
+</script>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="dashboard-container">
+    <h1>Welcome! {{username}} </h1>
+
+    <p>This is your dashboard</p>
+
+    <!-- # list of all song as button-->
+    <div class="listined-carousel">
+        <ul>
+            {% for song in songs%}
+                <li>
+                    {{song.title}} by {{song.artist}} ({{song.year}})
+                    <form action="{{url_for('play_song', song_id=song.id)}}", method="post">
+                        <button class="play-button" type="submit">Play</button>
+                    </form>
+                </li>
+            {% endfor%}
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

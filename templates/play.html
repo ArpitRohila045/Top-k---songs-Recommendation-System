@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="play-container">
+
+    <div class="playing-song-section">
+        <div class="playing-song-image">
+            <div class="image">
+
+            </div>
+        </div>
+        <div class="playing-song-discription">
+            <div class="discription">
+                <h3>{{playingSong.title}}</h3>
+                <h2>{{playingSong.artist}}</h2>
+                <h1>{{playingSong.year}}</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="remommended-song-section">
+            {% for rSong in recommendedSongs %}
+                <div class="song">
+                    {{rSong.title}} by {{rSong.artist}} ({{rSong.year}})
+                    <form action="{{ url_for('play_song', song_id = rSong.id)}}" method="post">
+                        <button type="submit">Play</button>
+                    </form>
+                </div>
+            {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}
